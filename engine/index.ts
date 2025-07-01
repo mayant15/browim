@@ -9,7 +9,6 @@ import { GoogleGenAI } from '@google/genai'
 const MODEL = 'gemini-2.5-flash-lite-preview-06-17'
 
 async function getHtml(url: string) {
-  console.log({ url })
   const response = await fetch(url, {
     method: "GET",
     headers: {
@@ -57,7 +56,6 @@ async function renderWithPandoc(html: string): Promise<string> {
       if (err) {
         return rej(err)
       }
-      console.log('written')
       proc.stdin?.end()
     })
   })
