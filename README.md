@@ -1,6 +1,6 @@
 # browim
 
-A Neovim extension to browse web pages as Markdown.
+A Neovim plugin to browse web pages as Markdown.
 
 ## Requirements
 
@@ -10,7 +10,7 @@ A Neovim extension to browse web pages as Markdown.
 
 ## Why?
 
-I have Neovim set up to render markdown with conceals. I also have extensions to
+I have Neovim set up to render markdown with conceals. I also have plugins to
 navigate text easier. I wanted to use these same motions to browse pages instead
 of clunky terminal web browsers.
 

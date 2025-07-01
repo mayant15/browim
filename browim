@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+DEFAULT_URL="https://news.ycombinator.com"
+URL=${1:-$DEFAULT_URL}
+
+nvim -c "Browim $URL"

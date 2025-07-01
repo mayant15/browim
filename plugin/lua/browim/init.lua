@@ -1,9 +1,19 @@
-local browim = {}
+local M = {}
+
+local function get_engine_path()
+  local this_script = debug.getinfo(1).source:sub(2)
+  local engine_dir = vim.fs.root(this_script, "engine")
+  return vim.fs.joinpath(engine_dir, "engine", "index.ts")
+end
 
 local function open_url(url)
+  local engine = get_engine_path()
   local tmp_file = vim.fn.tempname() .. ".md"
-  vim.cmd([[silent !bun run ../engine/index.ts ]] .. url .. " " .. tmp_file)
-  vim.cmd("view " .. tmp_file)
+
+  vim.system({
+    "bun", "run", engine, url, tmp_file
+  }):wait()
+  vim.cmd ("view " .. tmp_file)
 end
 
 local function open_from_cursor()
@@ -41,11 +51,12 @@ local function open(opts)
   end
 end
 
-function browim.setup(opts)
-  print("browim setup!")
+function M.setup(opts)
   vim.api.nvim_create_user_command("Browim", open, {
-    desc = "Open a link with Browim"
+    desc = "Open a link with Browim",
+    nargs= "?",
   })
+  vim.keymap.set('n', '<CR>', open_from_cursor, { desc = "Open the link under the cursor" })
 end
 
-return browim
+return M

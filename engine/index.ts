@@ -20,7 +20,7 @@ async function getHtml(url: string) {
 }
 
 async function renderWithGemini(html: string): Promise<string> {
-  assert(process.env.GOOGLE_API_KEY !== undefined, "GOOGLE_API_KEY environment variable not set")
+  assert(process.env.GEMINI_API_KEY !== undefined, "GEMINI_API_KEY environment variable not set")
 
   const prompt = `
 Convert the following html to clean, compact markdown. Keep the main content, remove fluff.
